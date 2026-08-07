@@ -35,20 +35,22 @@ jobs:
       # Covers unit parsing, page geometry, undo history, contour tracing and
       # the SVG/DXF/PDF writers. The canvas-backed half needs @napi-rs/canvas,
       # so fail loudly if it silently skipped instead of running.
+      # Pin the TAP reporter: Node 24 defaults to the spec reporter even when
+      # stdout is not a TTY, so the summary format would differ per version.
       - name: Run tests
         shell: bash
         run: |
           set -o pipefail
-          npm test 2>&1 | tee test-output.txt
+          npm test -- --test-reporter=tap 2>&1 | tee test-output.txt
 
       - name: Assert the canvas suite actually ran
         shell: bash
         run: |
-          if grep -q "SKIP @napi-rs/canvas is not installed" test-output.txt; then
+          if grep -q "@napi-rs/canvas is not installed" test-output.txt; then
             echo "::error::@napi-rs/canvas missing — the canvas tests were skipped"
             exit 1
           fi
-          grep -E "^# (tests|pass|fail)" test-output.txt || echo "(no TAP summary to report)"
+          grep -E "^# (tests|pass|fail)" test-output.txt
 
   syntax:
     name: module syntax
