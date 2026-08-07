@@ -40,11 +40,15 @@ mats are one dropdown away, plus any custom size.
 
 ## Running it locally
 
+Needs **Node 22 or newer** (see `.nvmrc`); Node 20 reached end of life in April
+2026. The app itself is plain ES modules, HTML and CSS with no build step —
+Node is only used for the dev server, the tests and deployment.
+
 ```sh
+nvm use              # or: fnm use
+npm ci
 npm run dev          # serves ./public at http://localhost:5173
 ```
-
-There is no build step — it is plain ES modules, HTML and CSS.
 
 ## Deploying to Cloudflare
 
@@ -73,7 +77,7 @@ no-referrer policy. There is no server code and no analytics.
 npm test             # 71 checks
 ```
 
-CI runs them on Node 20, 22 and 24 on every push and pull request, along with a
+CI runs them on Node 22 and 24 on every push and pull request, along with a
 syntax check of every browser module and a credential-free
 `wrangler deploy --dry-run` to catch a broken Cloudflare config.
 

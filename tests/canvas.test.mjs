@@ -2,16 +2,14 @@
 // and the PNG/PDF writers. Uses @napi-rs/canvas to stand in for the browser's
 // OffscreenCanvas; the whole file skips if that optional dependency is absent.
 //
-//   npm i && node --test tests/
+//   npm i && npm test
 
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-import { dirname, join } from 'node:path';
+import { join } from 'node:path';
 
-const here = dirname(fileURLToPath(import.meta.url));
-const FIXTURES = join(here, 'fixtures');
+const FIXTURES = join(import.meta.dirname, 'fixtures');
 
 let canvasLib = null;
 try {

@@ -1,10 +1,10 @@
 // Node test suite for the DOM-independent half of the app: unit parsing,
 // page geometry, the contour-tracing pipeline, marks and the cut-file writers.
 //
-//   node --test tests/
+//   npm test
 //
 // Canvas rasterisation (traceContour, renderSheet, PNG/PDF) is covered by the
-// browser check in tests/render-check.html instead.
+// browser check in tests/browser-render.html instead.
 
 import test from 'node:test';
 import assert from 'node:assert/strict';

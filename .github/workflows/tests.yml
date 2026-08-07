@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: ['20', '22', '24']
+        node: ['22', '24']
 
     steps:
       - uses: actions/checkout@v4
@@ -32,17 +32,17 @@ jobs:
 
       - run: npm ci
 
-      # Covers unit parsing, page geometry, undo history, contour tracing and
-      # the SVG/DXF/PDF writers. The canvas-backed half needs @napi-rs/canvas,
-      # so fail loudly if it silently skipped instead of running.
-      # Pin the TAP reporter: Node 24 defaults to the spec reporter even when
-      # stdout is not a TTY, so the summary format would differ per version.
+      # The TAP reporter is pinned because Node 24 defaults to the spec
+      # reporter even off a TTY, which would change the summary format.
       - name: Run tests
         shell: bash
         run: |
           set -o pipefail
           npm test -- --test-reporter=tap 2>&1 | tee test-output.txt
 
+      # The canvas-backed half of the suite skips itself when @napi-rs/canvas
+      # is unavailable, which would silently drop contour tracing and the
+      # PNG/PDF writers from coverage while still reporting green.
       - name: Assert the canvas suite actually ran
         shell: bash
         run: |
@@ -59,7 +59,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version-file: .nvmrc
       - name: Parse every browser module
         run: |
           for f in public/js/*.js; do
@@ -74,7 +74,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version-file: .nvmrc
           cache: npm
       - run: npm ci
       # Catches a broken wrangler.toml or a missing asset directory without
