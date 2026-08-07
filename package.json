@@ -1,0 +1,19 @@
+{
+  "name": "cutsheet",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Print-and-cut sheet layout for vinyl cutters \u2014 bleed, margins, registration marks and contour cut lines.",
+  "scripts": {
+    "dev": "npx --yes serve public -l 5173",
+    "check": "node --check public/js/main.js",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "test": "node --test tests/",
+    "preview": "node tests/preview.mjs docs"
+  },
+  "devDependencies": {
+    "@napi-rs/canvas": "^1.0.3",
+    "wrangler": "^4.86.0"
+  }
+}
