@@ -1,5 +1,7 @@
 # Cutsheet
 
+[![tests](https://github.com/armeehn/cutsheet/actions/workflows/tests.yml/badge.svg)](https://github.com/armeehn/cutsheet/actions/workflows/tests.yml)
+
 Lay out images on a print sheet, set the bleed and margins, and generate cut
 lines for a vinyl cutter. Everything runs in the browser — images never leave
 the machine they were opened on.
@@ -68,8 +70,12 @@ no-referrer policy. There is no server code and no analytics.
 ## Tests
 
 ```sh
-npm test             # 67 checks
+npm test             # 71 checks
 ```
+
+CI runs them on Node 20, 22 and 24 on every push and pull request, along with a
+syntax check of every browser module and a credential-free
+`wrangler deploy --dry-run` to catch a broken Cloudflare config.
 
 - `tests/logic.test.mjs` — unit parsing, page geometry, undo history, the
   tracing algorithms, marks, layout tools and the SVG/DXF writers. Runs on
