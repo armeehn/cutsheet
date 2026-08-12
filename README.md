@@ -74,7 +74,7 @@ no-referrer policy. There is no server code and no analytics.
 ## Tests
 
 ```sh
-npm test             # 71 checks
+npm test             # 84 checks
 ```
 
 CI runs them on Node 22 and 24 on every push and pull request, along with a
@@ -87,6 +87,13 @@ syntax check of every browser module and a credential-free
 - `tests/canvas.test.mjs` — contour tracing against real artwork, sheet
   rasterisation and the PNG/JPEG/PDF writers, using `@napi-rs/canvas` in place
   of the browser's `OffscreenCanvas`. Skips if that dev dependency is missing.
+- `tests/project.test.mjs` — the `.cutsheet.json` round trip: saving a sheet,
+  reopening it, and doing so without a network request (the deployed
+  `connect-src 'self'` refuses the `data:` URLs a project file is made of).
+- `tests/dom.test.mjs` — boots `public/index.html` in jsdom and drives the
+  panels, checking the seam between the markup and the document model. jsdom
+  has no layout engine and no canvas context, so it proves nothing about where
+  anything is *drawn*; use the two below for that.
 - `tests/preview.mjs` — renders a demo sheet to PNG so cut paths can be
   eyeballed: `node tests/preview.mjs docs`.
 - `tests/browser-render.html` — open it through a local server to confirm the
