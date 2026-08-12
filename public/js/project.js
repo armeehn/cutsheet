@@ -83,11 +83,31 @@ async function hydrateImage(rec) {
   return { ...rec, bitmap, dataUrl: null };
 }
 
+/**
+ * Decode a `data:` URL into a Blob without going through `fetch`.
+ *
+ * `fetch()` counts as a connection, so `connect-src 'self'` in `public/_headers`
+ * refuses a `data:` URL — which would break "Open project" on the deployed site
+ * while it kept working on an unheadered dev server. Nothing about a data URL
+ * needs the network, so decode it here and keep the CSP strict.
+ */
+export function dataUrlToBlob(url) {
+  const m = /^data:([^,;]*)((?:;[^,;]*)*),([\s\S]*)$/.exec(String(url ?? ''));
+  if (!m) throw new Error('That project references an image that is not a data URL.');
+  const type = m[1] || 'text/plain';
+  const body = m[3];
+  if (!/;base64/i.test(m[2])) return new Blob([decodeURIComponent(body)], { type });
+  const binary = atob(body.replace(/\s+/g, ''));
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return new Blob([bytes], { type });
+}
+
 async function applyPayload(payload) {
   images.clear();
   for (const im of payload.images || []) {
     let blob = im.blob;
-    if (!blob && im.dataUrl) blob = await (await fetch(im.dataUrl)).blob();
+    if (!blob && im.dataUrl) blob = dataUrlToBlob(im.dataUrl);
     if (!blob) continue;
     addImage(await hydrateImage({ ...im, blob, type: blob.type }));
   }
