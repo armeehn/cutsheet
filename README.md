@@ -125,3 +125,18 @@ The result is cached per image and per cut setting, and retraced lazily on idle.
 | Arrows | Nudge (<kbd>Shift</kbd> for 10×) |
 | <kbd>Space</kbd>+drag | Pan · <kbd>Ctrl</kbd>+wheel to zoom |
 | <kbd>Ctrl</kbd>+<kbd>0</kbd> | Fit sheet to window |
+
+---
+
+## Brand
+
+This project follows the [Riposte Laboratories design system](https://github.com/armeehn/riposte-brand) — published at
+[ripostelabs.xyz/brand](https://ripostelabs.xyz/brand/). See [`BRAND.md`](BRAND.md) for what
+conforms, what deliberately diverges, and why.
+
+<table>
+<tr>
+<td><b>DOC NO. RL-310-A</b><br>REV. A &middot; EST. 2026</td>
+<td align="right"><b>PARRY &#9851; RIPOSTE &#9851; RECYCLE &#9851; REPEAT</b><br>Riposte Laboratories Inc.</td>
+</tr>
+</table>
