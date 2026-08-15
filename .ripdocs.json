@@ -1,0 +1,30 @@
+{
+  "_comment": [
+    "ripdoc — this repo's filed documents. DOC NO. RL-BRAND-001-MD.",
+    "`ripdoc scan` owns which documents exist. Everything else here is",
+    "hand-set and survives a rescan: docno, rev, title, kicker,",
+    "strapline, class, class_options. Set \"pinned\": true to keep an",
+    "entry whose source has gone.",
+    "Numbers are registered in riposte-brand/docs/09-document-numbers.md."
+  ],
+  "docno_base": "RL-310",
+  "author": "Riposte Laboratories",
+  "class": "riposte-doc",
+  "exclude": [],
+  "documents": [
+    {
+      "id": "brand",
+      "source": "BRAND.md",
+      "docno": "RL-310-A",
+      "rev": "A",
+      "class": "riposte-doc"
+    },
+    {
+      "id": "readme",
+      "source": "README.md",
+      "docno": "RL-310",
+      "rev": "A",
+      "class": "riposte-doc"
+    }
+  ]
+}
