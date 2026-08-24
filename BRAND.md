@@ -29,7 +29,7 @@ Nothing yet. The divergences below are **debt**, not decisions.
 
 - [ ] **Restyle `public/css/style.css` onto `riposte-brand.css`.** This is the highest-value
       brand work in the repo — Cutsheet is a *print layout tool*, so a design system built
-      around dimensioned engineering documents is a natural fit rather than a costume.
+      around dimensioned technical documents is a natural fit rather than a costume.
       The mapping is direct:
       - Toolbar and panels → `.spec` cards with `bone-dim` headers
       - Sheet preview → bone field with 2px ink rules
