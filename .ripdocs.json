@@ -14,7 +14,7 @@
   "documents": [
     {
       "id": "brand",
-      "source": "BRAND.md",
+      "source": "BRAND.tex",
       "docno": "RL-310-A",
       "rev": "A",
       "class": "riposte-doc"

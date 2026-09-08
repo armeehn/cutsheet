@@ -131,7 +131,7 @@ The result is cached per image and per cut setting, and retraced lazily on idle.
 ## Brand
 
 This project follows the [Riposte Laboratories design system](https://github.com/armeehn/riposte-brand) — published at
-[ripostelabs.xyz/brand](https://ripostelabs.xyz/brand/). See [`BRAND.md`](BRAND.md) for what
+[ripostelabs.xyz/brand](https://ripostelabs.xyz/brand/). See [`docs/pdf/brand.pdf`](docs/pdf/brand.pdf) for what
 conforms, what deliberately diverges, and why.
 
 <table>
